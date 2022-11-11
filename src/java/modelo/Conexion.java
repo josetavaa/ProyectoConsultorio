@@ -13,14 +13,28 @@ import java.sql.DriverManager;
  */
 public class Conexion {
     Connection con;
+
+
+
     public Connection getConnection(){
-        try{
+       if(con != null){
+			return con;
+       }else{
+           generareConnection();
+           return con;
+       }
+
+    }    
+
+
+private void generareConnection(){
+	 try{
             Class.forName("com.mysql.jdbc.Driver");
             con=DriverManager.getConnection("jdbc:mysql://localhost:3307/consultorio","root","realmadridcf");
         }catch(Exception e){
-            
-        }return con;
-    }
-    
+            System.out.println(e.getMessage());
+        }
+}
+
     
 }
